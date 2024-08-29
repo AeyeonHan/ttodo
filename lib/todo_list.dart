@@ -42,7 +42,12 @@ class TodoList extends ConsumerWidget {
             SizedBox(
               height: 20.0,
             ),
+            Text('${todoList.length} 건'),
+            SizedBox(
+              height: 20.0,
+            ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 for (var todo in todoList)
                   GestureDetector(
@@ -70,6 +75,10 @@ class TodoList extends ConsumerWidget {
                     onDoubleTap: () {
                       todoNotifier.toggle(todo.id);
                       print('onDoubleTap: ${todo.description}');
+                    },
+                    onHorizontalDragEnd: (value) {
+                      print(
+                          'onHorizontalDragEnd: ${todo.description} / value: ${value}');
                     },
                   ),
               ],
