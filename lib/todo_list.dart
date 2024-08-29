@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'todo.dart';
 
 class TodoList extends ConsumerWidget {
-  const TodoList({super.key});
+  // const TodoList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Task> todoList = ref.watch(todoProviderProvider);
+    final List<Todo> todoList = ref.watch(todoProviderProvider);
     final todoNotifier = ref.watch(todoProviderProvider.notifier);
     final TextEditingController _controller = TextEditingController();
 
@@ -43,20 +43,45 @@ class TodoList extends ConsumerWidget {
               height: 20.0,
             ),
             Column(
-              children: todoList
-                  .map(
-                    (e) => Text(
-                      '${e.description}',
+              children: [
+                for (var todo in todoList)
+                  GestureDetector(
+                    child: Text(
+                      todo.description,
                       style: TextStyle(
-                          color: ((e.importance == Importance.high)
+                          color: ((todo.importance == Importance.high)
                               ? Colors.red
-                              : (e.importance == Importance.middle)
+                              : (todo.importance == Importance.middle)
                                   ? Colors.blue
                                   : Colors.black)),
                     ),
-                  )
-                  .toList(),
-            ),
+                    onTap: () {
+                      print('onTap: ${todo.description}');
+                    },
+                    onLongPress: () {
+                      print('onLongPress: ${todo.description}');
+                    },
+                    onDoubleTap: () {
+                      print('onDoubleTap: ${todo.description}');
+                    },
+                  ),
+              ],
+            )
+            // Column(
+            //   children: todoList
+            //       .map(
+            //         (e) => Text(
+            //           '${e.description}',
+            //           style: TextStyle(
+            //               color: ((e.importance == Importance.high)
+            //                   ? Colors.red
+            //                   : (e.importance == Importance.middle)
+            //                       ? Colors.blue
+            //                       : Colors.black)),
+            //         ),
+            //       )
+            //       .toList(),
+            // ),
           ],
         ),
       ),

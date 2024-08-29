@@ -13,8 +13,8 @@ enum Importance {
 }
 
 @immutable
-class Task {
-  const Task(
+class Todo {
+  const Todo(
       {required this.id,
       required this.description,
       this.importance = Importance.low,
@@ -29,17 +29,17 @@ class Task {
 @riverpod
 class TodoProvider extends _$TodoProvider {
   @override
-  List<Task> build() => [
-        const Task(id: 'task0', description: '집에 가기'),
-        const Task(id: 'task1', description: 'Go home'),
-        const Task(
+  List<Todo> build() => [
+        const Todo(id: 'task0', description: '집에 가기'),
+        const Todo(id: 'task1', description: 'Go home'),
+        const Todo(
             id: 'task2', description: '진짜 갈래', importance: Importance.high),
       ];
 
   void add(String desc) {
     state = [
       ...state,
-      Task(
+      Todo(
         id: _uuid.v4(),
         description: desc,
       )
