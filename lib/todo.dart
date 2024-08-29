@@ -45,6 +45,21 @@ class TodoProvider extends _$TodoProvider {
       )
     ];
   }
+
+  void toggle(String id) {
+    state = [
+      for (final todo in state)
+        if (todo.id == id)
+          Todo(
+            id: todo.id,
+            completed: !todo.completed,
+            description: todo.description,
+            importance: todo.importance,
+          )
+        else
+          todo,
+    ];
+  }
 // countUp(value) {
 //   update((count) async {
 //     count += value;

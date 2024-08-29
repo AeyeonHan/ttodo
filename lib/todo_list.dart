@@ -49,13 +49,19 @@ class TodoList extends ConsumerWidget {
                     child: Text(
                       todo.description,
                       style: TextStyle(
-                          color: ((todo.importance == Importance.high)
-                              ? Colors.red
-                              : (todo.importance == Importance.middle)
-                                  ? Colors.blue
-                                  : Colors.black)),
+                        color: ((todo.importance == Importance.high)
+                            ? Colors.red
+                            : (todo.importance == Importance.middle)
+                                ? Colors.blue
+                                : Colors.black),
+                        decoration: (todo.completed)
+                            ? TextDecoration.lineThrough
+                            : null,
+                      ),
                     ),
                     onTap: () {
+                      todoNotifier.toggle(todo.id);
+                      // ref.watch(todoProviderProvider.notifier).state
                       print('onTap: ${todo.description}');
                     },
                     onLongPress: () {
