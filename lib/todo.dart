@@ -60,6 +60,24 @@ class TodoProvider extends _$TodoProvider {
           todo,
     ];
   }
+
+  void changeImportance(String id) {
+    state = [
+      for (final todo in state)
+        if (todo.id == id)
+          Todo(
+              id: todo.id,
+              completed: todo.completed,
+              description: todo.description,
+              importance: (todo.importance == Importance.low)
+                  ? Importance.middle
+                  : (todo.importance == Importance.middle)
+                      ? Importance.high
+                      : Importance.low)
+        else
+          todo,
+    ];
+  }
 // countUp(value) {
 //   update((count) async {
 //     count += value;

@@ -60,7 +60,7 @@ class TodoList extends ConsumerWidget {
                       ),
                     ),
                     onTap: () {
-                      todoNotifier.toggle(todo.id);
+                      todoNotifier.changeImportance(todo.id);
                       // ref.watch(todoProviderProvider.notifier).state
                       print('onTap: ${todo.description}');
                     },
@@ -68,6 +68,7 @@ class TodoList extends ConsumerWidget {
                       print('onLongPress: ${todo.description}');
                     },
                     onDoubleTap: () {
+                      todoNotifier.toggle(todo.id);
                       print('onDoubleTap: ${todo.description}');
                     },
                   ),
