@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'todo_list.dart';
+import 'db_list.dart';
 
 void main() {
   runApp(const MainApp());
@@ -15,11 +16,11 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: Text('ttodo'),
+            title: Text('✔ ttodo'),
             backgroundColor: Colors.lightGreen.shade100,
           ),
-          body: TodoList(),
-          // body: CountView(),
+          body: DBList(),
+          // body: TodoList(),
         ),
       ),
     );
